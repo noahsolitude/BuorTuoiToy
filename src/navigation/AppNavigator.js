@@ -12,16 +12,20 @@ import Dice from '../screens/Dice';
 import Ar from './../viro/ar';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Basket from '../screens/Basket';
+import Auth from '../screens/Auth';
+import Registration from '../screens/Registration';
 
 const MainStack = createStackNavigator();
 
 const Main = () => {
   return (
     <MainStack.Navigator
-      initialRouteName="Home"
+      initialRouteName="Auth"
       screenOptions={{
         headerShown: false,
       }}>
+      <MainStack.Screen name="Auth" component={Auth} />
+      <MainStack.Screen name="Registration" component={Registration} />
       <MainStack.Screen name="MainTabs" component={MainTabs} />
       <MainStack.Screen name="SecondScreen" component={SecondScreen} />
       <MainStack.Screen name="Basket" component={Basket} />

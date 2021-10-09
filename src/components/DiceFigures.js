@@ -9,17 +9,17 @@ const ICON_SIZE = 35;
 const ICON_COLOR = '#FFFFFF';
 
 const figuresData = [
-  {id: 0, type: 'Ionicons', name: 'triangle-outline', text: 'D4'},
-  {id: 1, type: 'Ionicons', name: 'cube-outline', text: 'D6'},
-  {id: 2, type: 'Ionicons', name: 'triangle-outline', text: 'D8'},
-  {id: 3, type: 'FontAwesome5', name: 'gem', text: 'D10'},
-  {id: 4, type: 'Ionicons', name: 'football-outline', text: 'D12'},
-  {id: 5, type: 'Ionicons', name: 'star-outline', text: 'D20'},
-  {id: 6, type: 'FontAwesome5', name: 'gem', text: 'D%'},
+  {id: 0, title: 'pyramid', text: 'D4'},
+  {id: 1, title: 'cube', text: 'D6'},
+  {id: 2, title: 'triangle', text: 'D8'},
+  {id: 3, title: 'ruby', text: 'D10'},
+  {id: 4, title: 'ball', text: 'D12'},
+  {id: 5, title: 'pentagram', text: 'D20'},
+  {id: 6, title: 'ruby', text: 'D%'},
 ];
 
 const DiceFigures = () => {
-  const [selectedItem, setSelectedItem] = useState(figuresData[1]);
+  const [selectedItem, setSelectedItem] = useState(figuresData[0]);
   const styles = StyleSheet.create({
     container: {
       width: 50,
@@ -84,10 +84,9 @@ const DiceFigures = () => {
               <DiceFigure
                 key={index + item.id}
                 id={item.id}
-                type={item.type}
-                name={item.name}
+                title={item.title}
                 size={ICON_SIZE}
-                color={ICON_COLOR}
+                color={selectedItem.id == item.id ? '#FFA900' : ICON_COLOR}
                 text={item.text}
                 setSelectedItem={setSelectedItem}
                 selectedItem={selectedItem}

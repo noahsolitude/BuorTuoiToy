@@ -1,11 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import IconIonicons from 'react-native-vector-icons/Ionicons';
-import IconFontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import CubeSvg from '../img/svg/Vector.svg';
+import BallSvg from '../img/svg/ball.svg';
+import PyramidSvg from '../img/svg/pyramid.svg';
+import TriangleSvg from '../img/svg/triangle-down.svg';
+import RubySvg from '../img/svg/ruby.svg';
+import PentagramSvg from '../img/svg/pentagram.svg';
 
 const DiceFigure = ({
-  type,
-  name,
+  title,
   size,
   color,
   text,
@@ -13,6 +16,35 @@ const DiceFigure = ({
   selectedItem,
   id,
 }) => {
+  const svgs = [
+    {
+      title: 'cube',
+      svgImg: () => <CubeSvg fill={color} width={size} height={size} />,
+    },
+    {
+      title: 'ball',
+      svgImg: () => <BallSvg fill={color} width={size} height={size} />,
+    },
+    {
+      title: 'pyramid',
+      svgImg: () => <PyramidSvg fill={color} width={size} height={size} />,
+    },
+    {
+      title: 'triangle',
+      svgImg: () => <TriangleSvg fill={color} width={size} height={size} />,
+    },
+    {
+      title: 'ruby',
+      svgImg: () => (
+        <RubySvg fill={color} stroke={color} width={size} height={size} />
+      ),
+    },
+    {
+      title: 'pentagram',
+      svgImg: () => <PentagramSvg fill={color} width={size} height={size} />,
+    },
+  ];
+
   const isItemSelected = id => {
     return selectedItem.id == id;
   };
@@ -33,26 +65,21 @@ const DiceFigure = ({
     },
   });
 
-  const render = type => {
-    if (type === 'Ionicons') {
-      return (
-        <IconIonicons
-          name={name}
-          size={size}
-          color={isItemSelected(id) ? '#FFA900' : color}
-        />
-      );
-    } else if (type === 'FontAwesome5') {
-      return <IconFontAwesome5 name={name} size={size * 0.8} color={color} />;
+  const render = () => {
+    for (let i = 0; i < svgs.length; i++) {
+      if (title === svgs[i].title) {
+        return svgs[i].svgImg();
+      }
     }
+    return;
   };
   return (
     <TouchableOpacity
       style={styles.figure}
       onPress={() => {
-        setSelectedItem({type: type, name: name, text: text, id: id});
+        setSelectedItem({title: title, text: text, id: id});
       }}>
-      {render(type)}
+      {render()}
       {text && <Text style={styles.text}>{text}</Text>}
     </TouchableOpacity>
   );
